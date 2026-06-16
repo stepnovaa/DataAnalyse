@@ -7,14 +7,15 @@ from pathlib import Path
 import pandas as pd
 import requests
 
+
 REMOTIVE_URL = "https://api.adzuna.com/v1/api/jobs"
 REQUEST_DELAY = 1.1
 
 SEARCH_QUERIES = [
-    ("Data Analyst", "Data Analyst"),
-    ("Data Engineer", "Data Engineer"),
-    ("BI Analyst", "BI Analyst"),
-    ("Data Scientist", "Data Scientist"),
+    "Data Analyst",
+    "Data Engineer",
+    "BI Analyst",
+    "Data Scientist",
 ]
 
 RAW_DIR = Path("data/raw")
@@ -114,7 +115,8 @@ def fetch_adzuna(
             "app_id": app_id,
             "app_key": app_key,
             "what": query_encoded,
-            "results_per_page": 50,
+            "results_per_pages": 50,
+            "content-type": "application/json",
         }
         try:
             resp = requests.get(
@@ -253,5 +255,5 @@ def main() -> None:
     print(f"   Файл готов для следующего этапа: очистка данных.")
 
 
-if __name__ == "__main__":
+if name == "main":
     main()
